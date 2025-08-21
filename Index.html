@@ -8,126 +8,332 @@
     :root {
       --primary: #4a6fa5;
       --primary-light: #6b8cc6;
+      --primary-dark: #3a5a84;
       --off-state: #e74c3c;
       --on-state: #2ecc71;
-      --bg: #f5f7fa;
+      --bg: #f8f9fa;
       --card: #ffffff;
       --text: #333333;
       --text-light: #777777;
+      --border: #e1e4e8;
     }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      max-width: 400px;
+      font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 480px;
       margin: 0 auto;
       padding: 20px;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    
     .card {
       background: var(--card);
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      margin-top: 20px;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
     h1 {
       color: var(--primary);
-      text-align: center;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       font-weight: 600;
+      font-size: 1.8rem;
     }
+    
     .subtitle {
-      text-align: center;
       color: var(--text-light);
-      margin-bottom: 30px;
-      font-size: 14px;
+      font-size: 0.95rem;
     }
-    .toggle-container {
-      margin: 20px 0;
+    
+    .schedule-container {
+      margin-bottom: 25px;
+    }
+    
+    .schedule-card {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+    }
+    
+    .schedule-title {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--primary);
       text-align: center;
+      font-size: 1.1rem;
     }
-    input, button {
-      margin: 5px;
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    
+    .time-input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
     }
-    button {
+    
+    .time-input-group label {
+      width: 100px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    
+    input[type="time"] {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      background: white;
+    }
+    
+    .save-btn {
       background: var(--primary);
       color: white;
       border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
       cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(74, 111, 165, 0.2);
+      width: 100%;
+      font-weight: 500;
+      margin-top: 10px;
     }
-    button:hover {
+    
+    .save-btn:hover {
       background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(74, 111, 165, 0.3);
     }
+    
+    .current-schedule {
+      background: #f0f7ff;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+    
+    .current-schedule-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+      text-align: center;
+    }
+    
+    .schedule-info {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 10px;
+    }
+    
+    .schedule-item {
+      text-align: center;
+    }
+    
+    .schedule-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+    
+    .schedule-time {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+    
     .connection-status {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 20px;
-      font-size: 13px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
       color: var(--text-light);
+      border: 1px solid var(--border);
     }
+    
     .connection-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #ccc;
-      margin-right: 8px;
+      margin-right: 10px;
+      transition: background 0.3s ease;
     }
+    
     .connection-dot.connected {
       background: var(--on-state);
+      box-shadow: 0 0 5px var(--on-state);
     }
+    
+    .log-container {
+      margin-top: auto;
+    }
+    
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .log-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .clear-log {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    
     #log {
-      border: 1px solid #eee;
+      border: 1px solid var(--border);
       padding: 15px;
       height: 150px;
       overflow-y: auto;
-      margin-top: 20px;
-      border-radius: 8px;
-      font-size: 13px;
+      border-radius: 10px;
+      font-size: 0.85rem;
       background: #fafafa;
     }
+    
     .log-entry {
       margin-bottom: 8px;
       padding-bottom: 8px;
       border-bottom: 1px solid #f0f0f0;
+      display: flex;
     }
+    
     .log-time {
       color: var(--text-light);
-      font-size: 11px;
+      font-size: 0.75rem;
       margin-right: 8px;
+      flex-shrink: 0;
+      width: 50px;
     }
+    
     .log-message {
       color: var(--text);
+      flex: 1;
+      word-break: break-word;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+      color: var(--text-light);
+      font-size: 0.8rem;
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .schedule-info {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>WebRol IOT</h1>
-    <p class="subtitle">Kontrol Semua Device Berdasarkan Jadwal</p>
-
-    <!-- Jadwal Global -->
-    <div class="toggle-container">
-      <label>Waktu Menyala:</label>
-      <input type="time" id="global-on-time"><br>
-      <label>Waktu Mati:</label>
-      <input type="time" id="global-off-time"><br>
-      <button onclick="simpanJadwal()">Simpan Jadwal</button>
+    <div class="header">
+      <h1>IOT Global Scheduler</h1>
+      <p class="subtitle">Kontrol Semua Device Berdasarkan Jadwal</p>
+    </div>
+    
+    <div class="schedule-container">
+      <div class="schedule-card">
+        <div class="schedule-title">Atur Jadwal Global</div>
+        
+        <div class="time-input-group">
+          <label for="global-on-time">Menyala :</label>
+          <input type="time" id="global-on-time">
+        </div>
+        
+        <div class="time-input-group">
+          <label for="global-off-time">Mati :</label>
+          <input type="time" id="global-off-time">
+        </div>
+        
+        <button class="save-btn" onclick="simpanJadwal()">Simpan Jadwal</button>
+      </div>
+      
+      <div class="current-schedule">
+        <div class="current-schedule-title">Jadwal Saat Ini</div>
+        <div class="schedule-info">
+          <div class="schedule-item">
+            <div class="schedule-label">Menyala</div>
+            <div class="schedule-time" id="current-on-time">--:--</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-label">Mati</div>
+            <div class="schedule-time" id="current-off-time">--:--</div>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-label">Status</div>
+          <div class="schedule-time" id="schedule-status">Tidak aktif</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Status Koneksi -->
     <div class="connection-status">
       <div class="connection-dot" id="connection-dot"></div>
       <span id="connection-status">Menghubungkan ke broker...</span>
     </div>
-
-    <!-- Log -->
-    <div id="log"></div>
+    
+    <div class="log-container">
+      <div class="log-header">
+        <div class="log-title">Log Aktivitas</div>
+        <button class="clear-log" id="clear-log">Bersihkan</button>
+      </div>
+      <div id="log"></div>
+    </div>
+    
+    <div class="footer">
+      &copy; 2023 WebRol IOT Controller
+    </div>
   </div>
 
   <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
@@ -140,15 +346,21 @@
 
     // Daftar topik semua device
     const lampus = [
-      { topicCtrl: 'coba/lampu1' },
-      { topicCtrl: 'coba/lampu2' },
-      { topicCtrl: 'coba/lampu3' },
-      { topicCtrl: 'coba/lampu4' },
+      { topicCtrl: 'coba/lampu1', name: 'Lampu 1' },
+      { topicCtrl: 'coba/lampu2', name: 'Lampu 2' },
+      { topicCtrl: 'coba/lampu3', name: 'Lampu 3' },
+      { topicCtrl: 'coba/lampu4', name: 'Lampu 4' },
     ];
 
     const connectionDot = document.getElementById('connection-dot');
     const connectionStatus = document.getElementById('connection-status');
     const logEl = document.getElementById('log');
+    const clearLogBtn = document.getElementById('clear-log');
+    const currentOnTime = document.getElementById('current-on-time');
+    const currentOffTime = document.getElementById('current-off-time');
+    const scheduleStatus = document.getElementById('schedule-status');
+
+    let jadwalGlobal = { on: null, off: null };
 
     function addLogEntry(msg, isError = false) {
       const logEntry = document.createElement('div');
@@ -167,7 +379,46 @@
       logEntry.appendChild(msgSpan);
       logEl.appendChild(logEntry);
 
+      // Batasi jumlah log entries (maksimal 50)
+      if (logEl.children.length > 50) {
+        logEl.removeChild(logEl.firstChild);
+      }
+      
       logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    // Clear log function
+    clearLogBtn.addEventListener('click', () => {
+      logEl.innerHTML = '';
+      addLogEntry('Log dibersihkan');
+    });
+
+    function updateScheduleDisplay() {
+      currentOnTime.textContent = jadwalGlobal.on || '--:--';
+      currentOffTime.textContent = jadwalGlobal.off || '--:--';
+      
+      if (jadwalGlobal.on && jadwalGlobal.off) {
+        scheduleStatus.textContent = 'Aktif';
+        scheduleStatus.style.color = 'var(--on-state)';
+      } else {
+        scheduleStatus.textContent = 'Tidak aktif';
+        scheduleStatus.style.color = 'var(--text-light)';
+      }
+    }
+
+    function simpanJadwal() {
+      const onTime = document.getElementById("global-on-time").value;
+      const offTime = document.getElementById("global-off-time").value;
+
+      if (!onTime || !offTime) {
+        addLogEntry("❌ Mohon isi waktu ON dan OFF terlebih dahulu!", true);
+        return;
+      }
+
+      jadwalGlobal = { on: onTime, off: offTime };
+      updateScheduleDisplay();
+      
+      addLogEntry(`✅ Jadwal disimpan: Hidup ${onTime}, Mati ${offTime}`);
     }
 
     client.on('connect', () => {
@@ -193,23 +444,10 @@
       addLogEntry('🔄 Mencoba menghubungkan ulang ke broker');
     });
 
-    let jadwalGlobal = { on: null, off: null };
-
-    function simpanJadwal() {
-      const onTime = document.getElementById("global-on-time").value;
-      const offTime = document.getElementById("global-off-time").value;
-
-      if (!onTime || !offTime) {
-        alert("Mohon isi waktu ON dan OFF terlebih dahulu!");
-        return;
-      }
-
-      jadwalGlobal = { on: onTime, off: offTime };
-      alert(`Jadwal disimpan:\nHidup: ${onTime}\nMati: ${offTime}`);
-    }
-
     // Cek waktu setiap detik
     setInterval(() => {
+      if (!jadwalGlobal.on || !jadwalGlobal.off) return;
+      
       const now = new Date();
       const jamMenit = now.toTimeString().substr(0, 5); // HH:MM
 
@@ -217,16 +455,20 @@
         lampus.forEach(lampu => {
           client.publish(lampu.topicCtrl, "1");
         });
-        addLogEntry(`⏰ Semua lampu dinyalakan sesuai jadwal`);
+        addLogEntry(`⏰ Semua perangkat dinyalakan sesuai jadwal`);
       }
 
       if (jadwalGlobal.off === jamMenit) {
         lampus.forEach(lampu => {
           client.publish(lampu.topicCtrl, "0");
         });
-        addLogEntry(`⏰ Semua lampu dimatikan sesuai jadwal`);
+        addLogEntry(`⏰ Semua perangkat dimatikan sesuai jadwal`);
       }
     }, 1000);
+    
+    // Inisialisasi tampilan
+    updateScheduleDisplay();
+    addLogEntry('Sistem scheduler siap. Atur jadwal untuk memulai.');
   </script>
 </body>
 </html>
